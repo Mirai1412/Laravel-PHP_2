@@ -52,7 +52,7 @@ class PostsController extends Controller
         $this->validate($request, ['title'=>'required',
                         'content'=>'required|min:3']);
 
-        $path = null;
+        $fileName = null;
         if($request->hasFile('image')){
             $fileName = time().'_'.
             $request->file('image')->getClientOriginalName();

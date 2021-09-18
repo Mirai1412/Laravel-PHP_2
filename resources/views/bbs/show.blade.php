@@ -9,5 +9,5 @@
             </button>
         </div>
     </x-slot>
-    <x-post-list :posts="$posts" />
+    <x-post-show :post="$post" />
 </x-app-layout>

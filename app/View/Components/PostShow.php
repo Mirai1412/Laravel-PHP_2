@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class PostShow extends Component
 {
+
+    public $post;
     /**
      * Create a new component instance.
-     *
+
+
      * @return void
      */
-    public function __construct()
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -23,6 +26,7 @@ class PostShow extends Component
      */
     public function render()
     {
+
         return view('components.post-show');
     }
 }
