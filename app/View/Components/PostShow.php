@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class PostsShow extends Component
+class PostShow extends Component
 {
     public $post;
     /**
@@ -24,6 +24,6 @@ class PostsShow extends Component
      */
     public function render()
     {
-        return view('components.posts-show');
+        return view('components.post-show');
     }
 }
