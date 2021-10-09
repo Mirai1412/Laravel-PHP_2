@@ -28,17 +28,40 @@
     </div>
 </template>
 <script>
-export default{
-    data(){
-        return{
-            like : false
-        }
-    },
-    methods : {
-        likeClicked(){
-            this.like = !this.like;
+    export default {
+        props: ['post', 'loginuser'],
+        data() {
+            return {
+                like: false,
+                userIdArray: [],
+            }
+        },
+        methods: {
+            likeClicked() {
+                    axios.post('/like/'+this.post.id)
+                        .then(response=>{
+                             this.like = !this.like;
+                        })
+                        .catch(error=>{
+                            console.log(error);
+                        });
+            },
+            checkLikes() {
+                // this.post.likes가 현재 로그인한
+                // 사용자의 아이디를 즉, this.loginuser
+                // 포함하고 있으면 like = true,
+                // 그렇지 않으면 like=fasle
+                this.like =
+                this.userIdArray.includes(this.loginuser);
+            }
+
+        },
+        created(){
+            this.userIdArray = this.post.likes.map(elem =>{
+                return elem.id;
+
+            })
+            this.checkLikes();
         }
     }
-
-}
 </script>

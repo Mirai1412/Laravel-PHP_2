@@ -57,16 +57,7 @@
             </div>
         </form>
         <script>
-            function deleteImage() {
-                // alert('Hi~');
-                editForm = document.getElementById('editForm');
-                // editForm.delete('_method');
-                editForm._method.value = 'delete';
-                editForm.action = '/posts/images/{{ $post->id }}';
-                editForm.submit();
-                // confirm('hello?');
-                return false;
-            }
+
         </script>
     </div>
 </x-app-layout>
