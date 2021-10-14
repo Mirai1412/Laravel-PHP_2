@@ -2,7 +2,7 @@
     <div>
         <br>
         <svg v-if="like == false" @click="likeClicked"
-            aria-label="いいね！"
+            aria-label="좋아요"
             class="_8-yf5 "
             color="#262626"
             fill="#262626"

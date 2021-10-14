@@ -18,6 +18,8 @@
                     <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
+
+
                 </div>
             </div>
 
@@ -72,6 +74,7 @@
             <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
