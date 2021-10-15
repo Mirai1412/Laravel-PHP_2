@@ -38,9 +38,13 @@
                     showSuccessMsg();
                 @endif
 
+                // @if (session('delte'))
+                //     delteMSg();
+                // @endif
+
                 function confirmDelete(e) {
                     myform = document.getElementById('form');
-                    flag = confirm('정말 삭제하시겠습니까?');
+                    flag = confirm('삭제하시겠습니까?');
                     if (flag) {
                         // 서브밋...
                         myform.submit();
@@ -61,12 +65,32 @@
 
             function showSuccessMsg(){
                 Swal.fire({
-                position: 'top-end',
+                position: 'top-center',
                 icon: 'success',
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
                 })
+
+            // function delteMSg(){
+            //     Swal.fire({
+            //         title: 'Are you sure?',
+            //         text: "You won't be able to revert this!",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#3085d6',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: 'Yes, delete it!'
+            //         }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             Swal.fire(
+            //             'Deleted!',
+            //             'Your file has been deleted.',
+            //             'success'
+            //             )
+            //         }
+            //         })
+            // }
             }
         </script>
 

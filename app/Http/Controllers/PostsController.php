@@ -198,6 +198,7 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index');
+        // ->with('delte','true')
     }
 
     public function deleteImage($id) {

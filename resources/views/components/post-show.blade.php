@@ -26,6 +26,7 @@
                 <li class="list-group-item">작성자:
                     {{ $post->writer->name }}</li>
             </ul>
+
             <div class="card-body flex">
                 <a href="{{ route('posts.edit', ['post'=>$post->id]) }}" class="card-link">수정하기</a>
                 <form
@@ -39,6 +40,9 @@
                     <button type="submit">삭제하기</button>
                 </form>
             </div>
+
+            <div class="card" style="width: 99%; margin:0 auto; padding: 10px;">
+                <comment-list :post="{{ $post }}" :loginuser="{{ auth()->user()->id }}"/>
     </div>
 </div>
 
