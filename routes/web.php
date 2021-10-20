@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
@@ -18,11 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/posts', PostsController::class)
    ->middleware(['auth']);
 
-// Route::get('/posts', [PostsController::class, "index"])
-//    ->name('posts.index')
-// Route::Post('/posts', [PostsController::class, "store"])
-//    ->name('posts.store')
-
 Route::get('/', function () {
     return view('dashboard');
     })
@@ -33,3 +29,6 @@ Route::post('/like/{post}',[LikesController::class,"store"])
 
 
 require __DIR__.'/auth.php';
+
+Route::resource('/comment', CommentsController::class)
+   ->middleware(['auth']);
