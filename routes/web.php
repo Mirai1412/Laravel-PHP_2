@@ -30,5 +30,8 @@ Route::post('/like/{post}',[LikesController::class,"store"])
 
 require __DIR__.'/auth.php';
 
-Route::resource('/comment', CommentsController::class)
+Route::resource('/comment/{id}', CommentsController::class)
    ->middleware(['auth']);
+Route::get('/comments/{comment_id}',[CommentsController::class,'index'])->name('comments.index');
+Route::delete('/comments/{comment_id}',[CommentsController::class,'destroy'])->name('comments.delete');
+Route::post or put('/comments/{post_id}',[CommentsController::class,'store'])->name('comments.store');

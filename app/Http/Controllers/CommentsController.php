@@ -38,18 +38,40 @@ class CommentsController extends Controller
 
 
 
-    public function update() {
+	public function update(Request $request, $comment_id){
 
+        // Request $request 요청정보
+
+        $request ['comment'];
+
+        $request -> input('comment');
+
+        $comment = $request ->comment;
+
+        $comment = Comment::find($comment_id);
+        /* select * from comments where id =?  */
+
+        $comment->comment = $comment;
+        $comment->save();
     }
 
-    public function destroy(Request $request, $id) {
+    public function destroy ($comment_id){
 
-
-
-
+        $comment = Comment::find($comment_id);
+        $comment-> delete();
+        // delete from comments where id = ?
     }
 
-    public function store() {
+
+    public function store(Request $requset, $post_id){
+
+        $comment = new Comment;
+        $comment->user_id = auth( )-user( )->id;
+        $comment->post_id = $post_id;
+        $comment->comment = $request->comment;
+
+        $comment->save; /* id, created_at, updated_at */
+
 
     }
 }
