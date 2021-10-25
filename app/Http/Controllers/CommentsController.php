@@ -15,7 +15,7 @@ class CommentsController extends Controller
             select * from comments where post_id = ?
         */
 
-        $comments = Comment::where('post_id', $postId)->latest();
+        $comments = Comment::where('post_id', $postId)->latest()->get();
         return $comments;
 
     }
@@ -30,48 +30,60 @@ class CommentsController extends Controller
          */
 
          // Post 클래스에 comments 함수 구현한 경우..
+
         return $post->comments;
 
     }
 
+	public function update(Request $request, $commentId){
+        //validation check
+        $request->validate(['comment','required']);
+        //update할 레코드를 먼저 찾고, 그다음 update
+        $comment = Comment::find($commentId);
+        $comment::update([
+            'comment' => $request->input('comment'),
+    ]);
 
-
-
-
-	public function update(Request $request, $comment_id){
-
-        // Request $request 요청정보
-
-        $request ['comment'];
-
-        $request -> input('comment');
-
-        $comment = $request ->comment;
-
-        $comment = Comment::find($comment_id);
-        /* select * from comments where id =?  */
-
-        $comment->comment = $comment;
-        $comment->save();
+    return $comment;
     }
 
-    public function destroy ($comment_id){
-
-        $comment = Comment::find($comment_id);
+    public function destroy ($commentId){
+        /**
+         * comments 테이블에서 id가 $commentId인 레코드를 삭제
+         * 1. RAW query
+         * 2. DB Query Builder
+         * 3. Eloquent
+         */
+          // delet from comments where id = ?
+        $comment = Comment::find($commentId);
         $comment-> delete();
-        // delete from comments where id = ?
+
     }
 
 
-    public function store(Request $requset, $post_id){
+    public function store(Request $request, $postId){
 
-        $comment = new Comment;
-        $comment->user_id = auth( )-user( )->id;
-        $comment->post_id = $post_id;
-        $comment->comment = $request->comment;
+        /** 방법1
+         * Comment 객체 생성
+         * 이 객체의 멤버변수(프로퍼티)설정
+         * save(); 저장
+         *
+         * 방법2
+         * Comment::create([]);
+         */
+        $request->validate(['comment'=>'required']);
 
-        $comment->save; /* id, created_at, updated_at */
+        // create에 사용할 수 있는 칼럼들은
+        // Eloquent 모델 클래스에
+        // protected $fillable에 명시되어 있어야 한다.
+        // mass assignment
 
+        $comment =  Comment::create([
+            'comment' => $request->input('comment'),
+            'user_id' => auth()->user()->id, //로그인한 사용자의 id
+            'post_id' => $postId,
+        ]);
 
+        return $comment;
     }
 }
