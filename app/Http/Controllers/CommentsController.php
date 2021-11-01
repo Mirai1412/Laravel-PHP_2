@@ -15,7 +15,8 @@ class CommentsController extends Controller
             select * from comments where post_id = ?
         */
 
-        $comments = Comment::where('post_id', $postId)->latest()->get();
+        $comments = Comment::with('user')->where('post_id', $postId)->latest()->get();
+        // dd($comments);
         return $comments;
 
     }
@@ -57,6 +58,8 @@ class CommentsController extends Controller
           // delet from comments where id = ?
         $comment = Comment::find($commentId);
         $comment-> delete();
+
+        return $comment;
 
     }
 
