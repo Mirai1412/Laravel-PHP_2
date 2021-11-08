@@ -28,7 +28,10 @@
             </ul>
 
             <div class="card-body flex">
+                @can('update',$post)
                 <a href="{{ route('posts.edit', ['post'=>$post->id]) }}" class="card-link">수정하기</a>
+                @endcan
+                @can('delete',$post)
                 <form
                     id="form"
                     class="ml-4"
@@ -39,6 +42,7 @@
                     {{-- <input type="hidden" name="_method" value="delete"> --}}
                     <button type="submit">삭제하기</button>
                 </form>
+                @endcan
             </div>
 
             <div class="card" style="width: 99%; margin:0 auto; padding: 10px;">
