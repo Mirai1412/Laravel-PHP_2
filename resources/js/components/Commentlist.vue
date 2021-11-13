@@ -13,7 +13,9 @@
             class="btn btn-default">댓글 불러오기</button>
 
         <comment-item v-for="(comment, index) in comments.data"
-                :key="index" :comment="comment"/>
+                :key="index" :comment="comment"
+                :login_user_id="loginuser"
+                @deleted="getComments" />
 
         <pagination  @pageClicked="getPage($event)"
                 v-if="comments.links != null" :links="comments.links"/>
@@ -22,7 +24,7 @@
 
 <script>
 import CommentItem from './CommentItem.vue';
-// import Pagination from './Pagination.vue';
+import Pagination from './Pagination.vue';
 export default {
     props: ['post', 'loginuser'],
     components: {CommentItem, Pagination},
