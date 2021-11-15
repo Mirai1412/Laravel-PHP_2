@@ -99,7 +99,18 @@ export default {
         },
 
         updateComment() {
-
+            // axios.patch(url, data)
+            axios.patch('/comments/'+this.comment.id,
+                {'comment' : this.newComment}
+            ).then(response => {
+                console.log(response.status);
+                console.log(response.data);
+                this.updateClicked = false;
+               Swal.fire('수정완료')
+            })
+             .catch(error => {
+                 console.log(err)
+             });
 
         }
     },

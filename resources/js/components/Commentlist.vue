@@ -12,8 +12,8 @@
         <button @click="getComments"
             class="btn btn-default">댓글 불러오기</button>
 
-        <comment-item v-for="(comment, index) in comments.data"
-                :key="index" :comment="comment"
+        <comment-item v-for="comment in comments.data"
+                :key="comment.id" :comment="comment"
                 :login_user_id="loginuser"
                 @deleted="getComments" />
 
@@ -38,7 +38,7 @@ export default {
     methods: {
         addComment() {
             if(this.newComment == '') {
-                alert('한자라도 써라 꺄..');
+                 Swal.fire('한글자라도 쓰십시요.')
                 return;
             }
             axios.post('/comments/'+this.post.id,
